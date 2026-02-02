@@ -26,6 +26,42 @@ app.get("/",(req,res)=>{
     })
 });
 
+//get api =>/blogs(to fetch all blogs)
+app.get("/blogs",async (req,res)=>{
+    //fetch all blogs from database
+    const blogs = await Blog.find(); //mongoose method to fetch all documents from a collection
+    if(blogs.length==0){
+        res.json({
+            status : 404,
+            message : "No blogs fouund",
+        })
+    } else {
+    res.json({
+        status :200,
+        message : "All blogs fetched successfully",
+        data: blogs
+    })
+ }
+})
+
+
+//GET API -> /blogs/:id (to fetch a single blog by ID)
+app.get("/blogs/:id", async (req,res)=>{
+    const id = req.params.id;
+   const blog=await Blog.findById(id)
+   if(!blog){
+    res.status(404).json({
+        message : "Blog not found"
+    })
+   }
+   res.status(200).json({
+    message : "Blog fetched successfully",
+    data : blog
+   })
+})
+
+
+
 //create blog api
 app.post("/createBlog",async (req,res)=>{
     const title = req.body.title;
