@@ -87,6 +87,16 @@ app.post("/createBlog",async (req,res)=>{
     })
 });
 
+//update blog api
+app.patch("/blogs/:id",(req,res)=>{
+    const id = req.params.id;
+    const title = req.body.title;
+    const subtitle = req.body.subtitle;
+    const Description = req.body.Description;
+    Blog.findbyidandupdate(id,{
+        
+    })
+})
 
 //server listening
 app.listen(3000,()=>{
