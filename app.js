@@ -88,13 +88,37 @@ app.post("/createBlog",async (req,res)=>{
 });
 
 //update blog api
-app.patch("/blogs/:id",(req,res)=>{
+app.patch("/blogs/:id",async (req,res)=>{ //patch method is used to update a specific field of a document
     const id = req.params.id;
     const title = req.body.title;
     const subtitle = req.body.subtitle;
     const Description = req.body.Description;
-    Blog.findbyidandupdate(id,{
-        
+
+    // const title = req.body.title;
+    // const foundblogwithtitle = await Blog.find({
+    //     title :title
+    // })
+    // foundblogwithtitle[0].Description
+    // foundblogwithtitle[0].subtitle
+    // await foundblogwithtitle[0].save()
+
+     await Blog.findByIdAndUpdate(id,{
+        title : title,
+        subtitle : subtitle,
+        Description : Description
+    })
+
+    res.status(200).json({
+        message: "Blog updated successfully",
+    })
+})
+
+//delete API
+app.delete("/blogs/:id",async (req,res)=>{
+    const id =req.params.id
+    await Blog.findByIdAndDelete(id);
+    res.status(200).json({
+        message : "Blog deleted successfully"
     })
 })
 

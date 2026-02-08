@@ -22,3 +22,7 @@ To able to run this you must first install nodejs, git(For github) in your PC, o
 # Documentation
 Days 1-6 
 -- basics of understanding the key concepts of  JS, nodeJS, its installation , Npm, Express, port numbers , JSON, Nodemon for live server , and postman for API testing , Mongodb for database. 
+
+Days 6-9
+-- Understanding the concept of patching(Editing)the database using 
+app.patch() This is the syntax to patch or edit the data in database
